@@ -196,3 +196,29 @@ int slice_delete(Slice *s, size_t index) {
 
   return 0;
 }
+
+size_t slice_copy(Slice *dest, Slice *src) {
+  if (!dest || !src) {
+    return 0;
+  }
+
+  size_t num_of_elements;
+
+  // min(len(dest), len(src))
+
+  if (src->length < dest->length) {
+    num_of_elements = src->length;
+  } else {
+    num_of_elements = dest->length;
+  }
+
+  if (num_of_elements > dest->capacity) {
+    num_of_elements = dest->capacity;
+  }
+
+  if (num_of_elements > 0) {
+    memcpy(dest->data, src->data, num_of_elements * src->element_size);
+  }
+
+  return num_of_elements;
+}

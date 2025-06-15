@@ -24,5 +24,6 @@ Slice *slice_slice(const Slice *s, size_t start, size_t end);
 void slice_free_subslice(Slice *s);
 int slice_insert(Slice *s, size_t index, const void *element);
 int slice_delete(Slice *s, size_t index);
+size_t slice_copy(Slice *dest, Slice *src);
 
 #endif
